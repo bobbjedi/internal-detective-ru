@@ -17,6 +17,8 @@
 html,
 body {
   height: 100%;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 body {
@@ -131,6 +133,11 @@ body {
 }
 
 @media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
   .help {
     display: none;
   }
