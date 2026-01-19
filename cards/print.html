@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Внутренний детектив — карточки для печати (6 на A4)</title>
+    <link rel="stylesheet" href="./cards.css" />
+  </head>
+  <body>
+    <div class="help">
+      Печать: <code>Scale / Масштаб: 100%</code>, отключи
+      <code>Headers and footers</code>, включи <code>Background graphics</code>.
+      Односторонняя печать.
+    </div>
+
+    <div id="pages" class="pages" aria-label="Карточки для печати"></div>
+
+    <script src="./cards.js"></script>
+    <script>
+      window.Cards.renderAll({
+        mountId: "pages",
+        bgUrl: "../Gemini_Generated_Image_ckqx18ckqx18ckqx.png",
+      });
+    </script>
+  </body>
+</html>
+

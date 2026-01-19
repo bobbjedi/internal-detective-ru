@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Внутренний детектив — пример: 6 карточек на A4</title>
+    <style>
+      /* A4 portrait, single page */
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+
+      :root {
+        /* A4 content box after margins: 190mm × 277mm */
+        --gap: 5mm;
+        --card-w: 92.5mm; /* (190 - 5) / 2 */
+        --card-h: 89mm; /* (277 - 10) / 3 */
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+          "Noto Sans", "Helvetica Neue", sans-serif;
+        color: #111;
+        background: #fff;
+      }
+
+      .help {
+        max-width: 980px;
+        margin: 16px auto;
+        padding: 0 16px;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .help code {
+        padding: 0 6px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background: #fafafa;
+      }
+
+      .page {
+        width: 190mm;
+        height: 277mm;
+        margin: 0 auto;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: var(--card-w) var(--card-w);
+        grid-template-rows: var(--card-h) var(--card-h) var(--card-h);
+        gap: var(--gap);
+      }
+
+      .card {
+        box-sizing: border-box;
+        border: 0.6pt solid #000;
+        border-radius: 3mm;
+        padding: 5mm;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+        opacity: 0.41;
+        background: center / contain no-repeat
+          url("./Gemini_Generated_Image_ckqx18ckqx18ckqx.png");
+      }
+
+      .card > *:not(.bg) {
+        position: relative;
+        z-index: 1;
+      }
+
+      .label {
+        font-size: 10.5px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        opacity: 0.85;
+      }
+
+      .internal {
+        margin-top: 2mm;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 1.15;
+      }
+
+      .questions {
+        margin-top: 3.5mm;
+        display: flex;
+        flex-direction: column;
+        gap: 2.2mm;
+        font-size: 12.5px;
+        line-height: 1.25;
+      }
+
+      .q {
+        display: block;
+      }
+
+      @media print {
+        .help {
+          display: none;
+        }
+
+        .page {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="help">
+      Печать: в браузере выбери <code>Scale / Масштаб: 100%</code>, отключи
+      <code>Headers and footers</code>, включи <code>Background graphics</code>.
+      Лист односторонний, без переворотов.
+    </div>
+
+    <main class="page" aria-label="6 карточек на лист A4">
+      <section class="card">
+        <div class="bg" aria-hidden="true"></div>
+        <div class="label">Правило внутри</div>
+        <div class="internal">«Злиться нельзя»</div>
+        <div class="questions">
+          <div class="q">1) Где это правило помогает?</div>
+          <div class="q">2) Где оно мешает или становится опасным?</div>
+          <div class="q">3) Это про чувство или про поведение?</div>
+          <div class="q">4) Что будет, если всегда ему следовать?</div>
+          <div class="q">5) Какой апдейт (новое правило) ты бы придумал?</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="bg" aria-hidden="true"></div>
+        <div class="label">Правило внутри</div>
+        <div class="internal">«Всегда слушай старших»</div>
+        <div class="questions">
+          <div class="q">1) Где это правило помогает?</div>
+          <div class="q">2) Где оно мешает или становится опасным?</div>
+          <div class="q">3) Это про уважение или про подчинение?</div>
+          <div class="q">4) Что будет, если всегда ему следовать?</div>
+          <div class="q">5) Какой апдейт (новое правило) ты бы придумал?</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="bg" aria-hidden="true"></div>
+        <div class="label">Правило внутри</div>
+        <div class="internal">«Ошибаться нельзя»</div>
+        <div class="questions">
+          <div class="q">1) Где это правило помогает?</div>
+          <div class="q">2) Где оно мешает или становится опасным?</div>
+          <div class="q">3) Помогает ли оно учиться — или мешает?</div>
+          <div class="q">4) Что будет, если всегда ему следовать?</div>
+          <div class="q">5) Какой апдейт (новое правило) ты бы придумал?</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="bg" aria-hidden="true"></div>
+        <div class="label">Правило внутри</div>
+        <div class="internal">«Нельзя отказывать»</div>
+        <div class="questions">
+          <div class="q">1) Где это правило помогает?</div>
+          <div class="q">2) Где оно мешает или становится опасным?</div>
+          <div class="q">3) Можно ли отказывать вежливо?</div>
+          <div class="q">4) Что будет, если всегда ему следовать?</div>
+          <div class="q">5) Какой апдейт (новое правило) ты бы придумал?</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="bg" aria-hidden="true"></div>
+        <div class="label">Правило внутри</div>
+        <div class="internal">«Плакать стыдно»</div>
+        <div class="questions">
+          <div class="q">1) Где это правило помогает?</div>
+          <div class="q">2) Где оно мешает или становится опасным?</div>
+          <div class="q">3) Это про чувство или про поведение?</div>
+          <div class="q">4) Что будет, если всегда ему следовать?</div>
+          <div class="q">5) Какой апдейт (новое правило) ты бы придумал?</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="bg" aria-hidden="true"></div>
+        <div class="label">Правило внутри</div>
+        <div class="internal">«Просить помощи — стыдно»</div>
+        <div class="questions">
+          <div class="q">1) Где это правило помогает?</div>
+          <div class="q">2) Где оно мешает или становится опасным?</div>
+          <div class="q">3) У кого просить помощи безопасно?</div>
+          <div class="q">4) Что будет, если всегда ему следовать?</div>
+          <div class="q">5) Какой апдейт (новое правило) ты бы придумал?</div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

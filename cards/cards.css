@@ -1,0 +1,153 @@
+/* Печать карточек: 6 на A4 (2×3), односторонние */
+
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+:root {
+  /* A4 content box after margins: 190mm × 277mm */
+  --gap: 5mm;
+  --card-w: 92.5mm; /* (190 - 5) / 2 */
+  --card-h: 89mm; /* (277 - 10) / 3 */
+
+  --bg-opacity: 0.41; /* яркость фона */
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+    "Noto Sans", "Helvetica Neue", sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+.help {
+  max-width: 980px;
+  margin: 16px auto;
+  padding: 0 16px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.help code {
+  padding: 0 6px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12mm;
+  padding: 8mm 0 16mm;
+}
+
+.page {
+  width: 190mm;
+  height: 277mm;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: var(--card-w) var(--card-w);
+  grid-template-rows: var(--card-h) var(--card-h) var(--card-h);
+  gap: var(--gap);
+}
+
+.card {
+  box-sizing: border-box;
+  border: 0.6pt solid #000;
+  border-radius: 3mm;
+  padding: 5mm;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* вертикально по центру */
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  opacity: var(--bg-opacity);
+  background: center / contain no-repeat var(--bg-image);
+}
+
+.card > *:not(.bg) {
+  position: relative;
+  z-index: 1;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 6mm;
+  align-items: baseline;
+  margin-bottom: 1.5mm;
+}
+
+.label {
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.tag {
+  font-size: 10px;
+  opacity: 0.75;
+  padding: 0.8mm 2mm;
+  border: 0.5pt solid #000;
+  border-radius: 2mm;
+}
+
+.internal {
+  margin-top: 1.5mm;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.questions {
+  margin-top: 3.5mm;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2mm;
+  font-size: 12.5px;
+  line-height: 1.25;
+}
+
+.q {
+  display: block;
+}
+
+@media print {
+  .help {
+    display: none;
+  }
+
+  .pages {
+    padding: 0;
+    gap: 0;
+  }
+
+  .page {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+}
+
