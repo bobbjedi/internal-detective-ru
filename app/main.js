@@ -415,9 +415,9 @@ createApp({
             <div class="brand__sub">Весёлая игра с карточками</div>
           </div>
           <nav class="nav">
-            <a class="nav__link" href="#" @click.prevent="view = 'play'">Играть</a>
-            <a class="nav__link" href="#" @click.prevent="view = 'kids'">Детям</a>
-            <a class="nav__link" href="#" @click.prevent="view = 'parents'">Родителям</a>
+            <a class="nav__link nav__link--play" href="#" @click.prevent="view = 'play'">Играть</a>
+            <a class="nav__link nav__link--kids" href="#" @click.prevent="view = 'kids'">Детям</a>
+            <a class="nav__link nav__link--parents" href="#" @click.prevent="view = 'parents'">Родителям</a>
           </nav>
         </div>
       </header>
