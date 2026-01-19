@@ -390,7 +390,7 @@ createApp({
     },
     async loadCards() {
       try {
-        const response = await fetch("../cards/cards.json");
+        const response = await fetch("cards.json");
         const data = await response.json();
         this.cards = data.cards || [];
         this.categories = [...new Set(this.cards.map((card) => card.category))];
