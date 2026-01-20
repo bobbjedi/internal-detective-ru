@@ -175,7 +175,7 @@ createApp({
     kidsContent() {
       return `
         <p class="sub">Что это за игра и зачем она нужна (версия для ребёнка).</p>
-        <p>Внутри нашей головы есть нарушители‑правила. Ты детектив - должен найти и разоблачить их!</p>
+        <p>Представь, что внутри есть нарушители‑правила. Ты как детектив ищешь их, задаёшь вопросы и находишь более умную версию.</p>
 
         <h3>Что такое интернал</h3>
         <div class="box">
@@ -391,7 +391,7 @@ createApp({
     },
     async loadCards() {
       try {
-        const response = await fetch("cards.json");
+        const response = await fetch("../cards/cards.json");
         const data = await response.json();
         this.cards = data.cards || [];
         this.categories = [...new Set(this.cards.map((card) => card.category))];
