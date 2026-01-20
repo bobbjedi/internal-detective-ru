@@ -3,12 +3,33 @@ const { createApp } = Vue;
 const GameCard = {
   props: ["card", "currentIndex", "total"],
   emits: ["prev", "next", "finish", "complete"],
+  data() {
+    return {
+      showScrollHint: false,
+    };
+  },
   computed: {
     isLastCard() {
       return this.currentIndex >= this.total - 1;
     },
   },
   methods: {
+    updateScrollHint() {
+      const list = this.$refs.qList;
+      if (!list) {
+        return;
+      }
+      const hasOverflow = list.scrollHeight > list.clientHeight + 1;
+      const remaining = list.scrollHeight - list.scrollTop - list.clientHeight;
+      this.showScrollHint = hasOverflow && remaining > 2;
+    },
+    scrollToBottom() {
+      const list = this.$refs.qList;
+      if (!list) {
+        return;
+      }
+      list.scrollTo({ top: list.scrollHeight, behavior: "smooth" });
+    },
     handleNextOrComplete() {
       if (this.isLastCard) {
         this.$emit("complete");
@@ -16,6 +37,12 @@ const GameCard = {
         this.$emit("next");
       }
     },
+  },
+  mounted() {
+    this.$nextTick(this.updateScrollHint);
+  },
+  updated() {
+    this.$nextTick(this.updateScrollHint);
   },
   template: `
     <div class="game">
@@ -32,9 +59,16 @@ const GameCard = {
 
       <article class="card card--fullscreen">
         <div class="card__title">{{ card.text }}</div>
-        <ol class="q">
+        <ol class="q" ref="qList" @scroll="updateScrollHint">
           <li v-for="q in card.questions" :key="q">{{ q }}</li>
         </ol>
+        <button
+          v-if="showScrollHint"
+          class="scroll-hint"
+          type="button"
+          @click="scrollToBottom"
+          aria-label="Прокрутить вниз"
+        ></button>
       </article>
 
       <div class="nav-buttons nav-buttons--fullscreen">
