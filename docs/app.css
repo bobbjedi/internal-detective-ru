@@ -485,6 +485,7 @@ a {
   position: relative;
   overflow: hidden;
   margin-bottom: 80px;
+  font-size: 12px;
 }
 
 .card::before {
@@ -519,10 +520,13 @@ a {
   margin: 0;
   padding-left: 24px;
   color: #cbd5f5;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.6;
   position: relative;
   z-index: 1;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .q li {
